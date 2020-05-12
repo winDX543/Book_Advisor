@@ -16,8 +16,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded());
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/public');
-
-//declaration
+// database setup
 var newregister = '';
 //var userlogin='';
 var bybookname = '';
@@ -36,11 +35,8 @@ function newUser(id) {
   return { id: id, newregister: '', bybookname: '', byauthor: '', uploadvideo: '', upvideoum: '', upvideobookname: '' ,bookname:'', ownercondition:'' };
 }
 
-
-// database setup
-
 var serviceAccount = {
-  "type": "service_account",
+    "type": "service_account",
   "project_id": "bookadvisor-c48dd",
   "private_key_id": "f665ee98afca0d3d419e5dc96edf9bd2bede0822",
   "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC9uOuGmPvbMdJL\nSfnkLPu0mdsIADJfn8N0/j7KEBejcChXm8AhtmMe/63B0ONCR+ghxZ8iF8/L+Q33\nxZYIutsmj/PV9o/lPPnXUN2RA4VX2uWbTv3DujoG6tX6esM+N4qbSfLaPOBq34As\nK028R6rptfE2HdJyDuTYtWfqK+Nunl8dRS2uJKgsmhGytNDOX6QdBrqmfnWYGpCV\nFlH1YODoMFE2Sy55WE0MIA+oQfz8QMwcod/dY5iT6eTHLANmK7oB9dd3YXojyIj1\nhmnH5+M3f0pZQX1h4GWXVWtp3+gwhGMiVAVv2ilpip2k3PCMKAhv/1D6IFjmb8RP\nCM26gqHZAgMBAAECggEALzDnmNfF0dx/KA4TE/AifeZFRqSx4vo85oV1PdKp5pP3\n3O7XaCtTVXsYj9yzIqH7OidLcXIF1IEzOb3Sl4JPD7T/3GlTmpxDswygyDjdeqBu\nu2Z3Fa/lTiIsrnzJwtiS6BSJTUKWOc81NQdicyJKf46rnJ/nYEqXHtZkrilTjYh2\nhLhGd3M68aOGBbS8FUZ1/obFjQGi4zrvsCTnG9h8rXkHeTo4hJPHUJwwvpcnBoPa\ntpZifEAY5aeOTfu1lU/H4sPpfsorg0wQNeiml3LdAKDaVHD4PZlu0ntIuoHbJ7hG\nLpkhE6M6f36rm1vr4SH8+fKHTMxeSWjPU0v6gU8VfwKBgQDjTqmULQ1FIAMCz0rt\nLeRNEKWNjA11Ik02UoJhLl3sdMsus7VhIofX7gnovMkJ9q7GD/HY3vhOQ1DIfEpj\njlH7JCiCOszSttSQL7drtmpwM2mn+pf8ONEAY3VPoD7gX7lv4SzVqyU/jRzMio8O\nmwu8YOUFeaIDdZwAPlpfCUSBvwKBgQDVq7dyqBzmlKqZbxbpggXmlXTQG3OOLQQ7\nVGKIEwyWxs3TrfDpzlFRqNL45weifRaR/1JoBPNhJwe3CDGarRswcASfd3Xkj+S1\nEKQCqQLzTXzVkXvRimYtYkN7C0FJv3rqelmsJfkTLs1T0K7eAdJeUuetQzSoIE2U\nJn1UL+0SZwKBgQCL7ajG5tT8cLBp0mI1j8KzDkRb1pOSQAN4JWLNoFWBcoSBw28s\n1Kz7aDYBZ/X6hDkjBD3FW71PsHDSenDwyHP/PksRoFDmhlZkTHuFe04atAuetM1L\nH07KBm/5DJSoW0U0clG/VxQfAydvYvyd6SRYWu2haTcrGgNmwvuu9W2O0QKBgQCW\n3TyUrxBg2f0ugppZ2x1RdptYyNkpPK2tOmKrk0+jMdFoMXtVigAuuRXk+jKQzuNd\nyDmmCkDRit5OpHFptenppF4PPii2bcbc9VfoLO9RXJfUr3kONTr5tlTRDtxVNuaR\nojuoadNYcQY2tLSTOhQP11ePJVGLl+tOvHJnO8OW5wKBgHWDQS/QEjQqef6Eq79r\nY5/VwFpHhSzaFkPG+5Ty4xbPFcs/hFirfDNLASWf0zQgNATZTtD9qqwB25okS+qV\nEI0u8GwwaiEIQK9VBU/88Uos9R11hqCNQF+EvZMH7finFN53t9UugF+x3MlljDh7\naIv8HzRYfOwau582Arou/5OP\n-----END PRIVATE KEY-----\n",
@@ -52,18 +48,19 @@ var serviceAccount = {
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-iq6t9%40bookadvisor-c48dd.iam.gserviceaccount.com"
 }
 
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://bookadvisor-c48dd.firebaseio.com"
 });
 
 const db = admin.firestore();
+
 //get_started and greeting 
 
 requestify.post('https://graph.facebook.com/v2.6/me/messenger_profile?access_token=' + PAGE_ACCESS_TOKEN,
   {
     "get_started": { "payload": "Hi" },
+     
     "greeting": [
       {
         "locale": "default",
@@ -76,10 +73,10 @@ requestify.post('https://graph.facebook.com/v2.6/me/messenger_profile?access_tok
 // Sets server port and logs message on success
 
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
-
 app.get('/', (req, res)=>{
 	res.send("Hello World!");
 })
+
 
 // Adds support for GET requests to our webhook
 
