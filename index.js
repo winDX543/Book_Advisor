@@ -58,6 +58,7 @@ admin.initializeApp({
   databaseURL: "https://bookadvisor-c48dd.firebaseio.com"
 });
 
+const db = admin.firestore();
 //get_started and greeting 
 
 requestify.post('https://graph.facebook.com/v2.6/me/messenger_profile?access_token=' + PAGE_ACCESS_TOKEN,
