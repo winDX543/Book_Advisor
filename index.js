@@ -2305,7 +2305,7 @@ async function ApplicationList(senderID) {
 
 async function AcceptArray(senderID, docid, userid) {
   var yes = 'yes';
-  var usercon = true;
+  var usercon = 'true';
   var userdocid = '';
   await db.collection('testingreviewer').doc(docid).set({
     isreviewer: yes
@@ -2329,7 +2329,7 @@ async function AcceptArray(senderID, docid, userid) {
 
 async function DeclineArray(senderID, docid, userid) {
   var no = 'no';
-  var usercon = false;
+  var usercon = 'false';
   var userdocid = '';
   await db.collection('testingreviewer').doc(docid).set({
     isreviewer: no
