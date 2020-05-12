@@ -57,18 +57,18 @@ const db = admin.firestore();
 
 //get_started and greeting 
 
-requestify.post('https://graph.facebook.com/v2.6/me/messenger_profile?access_token=' + PAGE_ACCESS_TOKEN,
-  {
-    "get_started": { "payload": "Hi" },
-     
-    "greeting": [
-      {
-        "locale": "default",
-        "text": "Hello {{user_first_name}}! \nWe provide service!!"
-      }
-    ]
-  }
-)
+	// requestify.post('https://graph.facebook.com/v2.6/me/messenger_profile?access_token=' + PAGE_ACCESS_TOKEN,
+	//   {
+	//     "get_started": { "payload": "Hi" },
+	     
+	//     "greeting": [
+	//       {
+	//         "locale": "default",
+	//         "text": "Hello {{user_first_name}}! \nWe provide service!!"
+	//       }
+	//     ]
+	//   }
+	// )
 
 // Sets server port and logs message on success
 
@@ -1013,6 +1013,10 @@ app.get('/register_books/:sender_id', function (req, res) {
 // app.get('/add-whitelist', (req, res) => {
 //   whitelistDomains(res);
 // });
+
+app.get('/removePersistentMenu',function(req,res){
+	removePersistentMenu(res);
+})
 
 app.post('/register_books', async (req, res) => {
   let author = req.body.author;
@@ -2435,4 +2439,27 @@ async function RetrieveVideo(senderID, dataarray) {
 //       }
 //   });
 // } 
+function removePersistentMenu(res){
+	var messageData = {
+		"fields":[
+			"persistent_menu",
+			"get_started"
+		]
+	};
+
+	request({
+		url:'https:graph.facebook.com/v.2.6/me/messenger_profile?access_token='+PAGE_ACCESS_TOKEN,
+		method: 'DELETE',
+		headers: {'Content-Type': 'application/json'},
+		form: messageData
+	},
+		function(error,response,body){
+			if(!error && response.statusCode == 200){
+				res.send(body);
+			} else {
+				res.send(body);
+			}
+		
+	});
+}
 
