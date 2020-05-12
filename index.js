@@ -55,7 +55,7 @@ var serviceAccount = {
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://.bookadvisor-c48dd.firebaseio.com"
+  databaseURL: "https://bookadvisor-c48dd.firebaseio.com"
 });
 
 //get_started and greeting 
