@@ -1,0 +1,28 @@
+{
+  "name": "book_advisor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/winDX543/Book_Advisor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/winDX543/Book_Advisor/issues"
+  },
+  "homepage": "https://github.com/winDX543/Book_Advisor#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "firebase-admin": "^8.12.1",
+    "fs": "0.0.1-security",
+    "request": "^2.88.2",
+    "requestify": "^0.2.5"
+  }
+}

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>ddmo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ </head>
+
+  <body>
+  <script>
+      (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'Messenger'));
+
+    const APP_ID = 686366792150447;    
+    var senderID = "";
+    
+    window.extAsyncInit = function() {
+        MessengerExtensions.getContext(APP_ID, 
+          function success(thread_context){
+           senderID = thread_context.psid;
+          },
+          function error(err){
+            console.log(err);
+          }
+        );        
+    };
+
+    // function register() {
+    //   fetch('api post/ ....', { senderID: senderID })
+    // }
+  </script>
+  
+	<h1><%= title %></h1>
+
+  <form id="form" method="post" action="/register_user">
+  <!-- <div class="form-group">
+    <label for="name">Image</label>
+    <input type="text" class="form-control" id="image" name="image" placeholder="Enter image url">    
+  </div> -->
+  
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email" name="email" placeholder="email">
+  </div> 
+<br/>
+  <label for="genre">Hobby & Interest</label>
+  <div class="form-group">
+      <input type="checkbox" id="knowledge" name="knowledge" value="knowledge">
+      <label for="knowledge">Knowledge</label><br>
+
+      <input type="checkbox" id="romance" name="romance" value="romance">
+      <label for="romance">Romance</label><br>
+
+      <input type="checkbox" id="religion" name="religion" value="religion">
+      <label for="religion">Religion</label><br>
+
+      <input type="checkbox" id="history" name="history" value="history">
+      <label for="history">History</label><br>
+
+       <input type="checkbox" id="biography" name="biography" value="biography">
+      <label for="biography">Biography</label><br>
+  </div>
+  <br/>
+
+    <input type="hidden"  id="sender" name="sender" value="<%= sender_id %>">
+  <input type="submit" value="Submit"> 
+  </form>
+
+<script >
+    var knowledge = document.getElementById("knowledge").checked;
+    var romance = document.getElementById("romance").checked;
+    var religion = document.getElementById("religion").checked;
+    var history = document.getElementById("history").checked;
+    var biography = document.getElementById("biography").checked;
+  </script>
+	
+  <script>
+      
+   
+      const windowShut = () => {
+        MessengerExtensions.requestCloseBrowser(function success() {
+          console.log(" Wnindeow Shut success"); 
+            window.location.assign("www.google.com");
+        }, function error(err) {
+          console.log(err);
+        });
+      }
+
+      
+      document.getElementById("form").addEventListener("submit", window.location.assign(('https://www.messenger.com/closeWindow/?image_url=https://secure.i.telegraph.co.uk/multimedia/archive/03058/thankyou-interest_3058089c.jpg&display_text=Thanks'));
+
+
+
+     
+
+  </script>
+
+  </body>
+
+</html>
