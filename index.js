@@ -225,7 +225,7 @@ app.post('/webhook', (req, res) => {
                       }
                       else if (userInput == 'byauthor') {
                         currentUser.byauthor = userInput;
-                        textMessage(senderID,"Please Type Author name!");
+                        textMessage(senderID,"Please Type Author Name!");
                         console.log("SearchType", currentUser.byauthor);
                       }
                       else if (userMessage !== undefined && currentUser.byauthor == 'byauthor') {
@@ -1017,9 +1017,9 @@ app.get('/register_books/:sender_id', function (req, res) {
 //   whitelistDomains(res);
 // });
 
-app.get('/removePersistentMenu',function(req,res){
-	removePersistentMenu(res);
-})
+	// app.get('/removePersistentMenu',function(req,res){
+	// 	removePersistentMenu(res);
+	// })
 
 app.post('/register_books', async (req, res) => {
   let author = req.body.author;
@@ -1370,7 +1370,7 @@ function QuickReplyReviewerMenu(senderID) {
       },
 
       "message": {
-        "text": "Please Choose User Menu",
+        "text": "Select One Menu",
         "quick_replies": [
           {
             "content_type": "text",
@@ -1656,7 +1656,7 @@ function SearchByTyping(senderID, userMessage) {
         bookshop.forEach(doc => {
 
           let data = {
-            "title": "BookName : " + userMessage,
+            "title": "Book Name : " + userMessage,
             "subtitle": "Author : " + author,
             "image_url": imageUrl,
             "buttons": [
@@ -1667,7 +1667,7 @@ function SearchByTyping(senderID, userMessage) {
               },
               {
                 "type": "postback",
-                "title": "Book Review List",
+                "title": "Book Review Videos",
                 "payload": `bookreviewlist#${userMessage}`
               }
 
@@ -1835,12 +1835,12 @@ function SearchByAuthor(senderID, userMessage) {
           "buttons": [
             {
               "type": "postback",
-              "title": "Book Detail",
+              "title": "Book Info",
               "payload": `authorbkdetail#${doc.id}#${doc.data().image}`
             },
             {
               "type": "postback",
-              "title": "Book Review List",
+              "title": "Book Review Videos",
               "payload": `bookreviewlist#${doc.id}`
             }
           ]
@@ -1970,7 +1970,7 @@ function QuickReplyHobbies(senderID) {
       },
 
       "message": {
-        "text": "Please Choose Your Hobby Category",
+        "text": "Please Choose One",
         "quick_replies": [
           {
             "content_type": "text",
