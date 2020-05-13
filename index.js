@@ -2214,7 +2214,7 @@ async function VideoUpload(senderID, userMessage) {
   var reviewerCondition = 'before';
   var email='';
 
- await db.collection('user').wherewhere('isreviewer', '==', `${senderID}`).get().then(async(em)=>{
+ await db.collection('user').where('isreviewer', '==', `${senderID}`).get().then(async(em)=>{
   	em.forEach(doc=>{
   		email=doc.data().email
   	})
