@@ -351,8 +351,17 @@ app.post('/webhook', (req, res) => {
 
                       }
                       if (userInput == 'instruction') {
-                        MessageDetail(senderID, "Step 1", "Please Upload Video").then(() => {
-                          QuickReplyUserMenu(senderID);
+                        MessageDetail(senderID,"Please Upload the Facebook Video Link").then(() => {
+                        	 MessageDetail(senderID,"The email will be sent when you are accepted as Reviewer").then(()=>{
+                        	 	 MessageDetail(senderID,"Please Follow the instruction to become a 'Book Reviewer'").then(()=>{
+                        	 	 	 MessageDetail(senderID,"Sent the payment wallet account name to winerer@gmail.com ~!").then(()=>{
+                        	 	 	 		 MessageDetail(senderID,"Enjoy ~").then(()=>{
+                        	 	 	 		 QuickReplyUserMenu(senderID)	
+                        	 	 	 		 })
+                        	 	 	 })
+                        	 	 })
+                        	 })	
+                          
                         })
                       }
                       if (userInput.includes('bookshopinfo')) {
