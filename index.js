@@ -1403,7 +1403,7 @@ function QuickReplyNewUser(senderID) {
         "quick_replies": [
           {
             "content_type": "text",
-            "title": "Reader",
+            "title": "Book Reader",
             "payload": "reader"
           },
           {
