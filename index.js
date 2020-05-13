@@ -1457,7 +1457,7 @@ function BookshopMenu(senderID) {
                   },
                   {
                     "type": "postback",
-                    "title": "Your Books List",
+                    "title": "Your Books List",                  
                     "payload": "booklist"
                   },
                 ]
@@ -2212,12 +2212,20 @@ function ReviewerTest(senderID) {
 
 async function VideoUpload(senderID, userMessage) {
   var reviewerCondition = 'before';
-  console.log("UserMessage", userMessage);
-  await db.collection('testingreviewer').add({
-    isreviewer: reviewerCondition,
-    userid: senderID,
-    videolink: userMessage
+  var email='';
+
+ await db.collection('user').wherewhere('isreviewer', '==', `${senderID}`).get().then(async(em)=>{
+  	em.forEach(doc=>{
+  		email=doc.data().email
+  	})
+  	await db.collection('testingreviewer').add({
+  		email:email ,
+  		isreviewer: reviewerCondition,
+		userid: senderID,
+		videolink: userMessage
+  	})
   })
+  console.log("UserMessage", userMessage);
 }
 
 async function ApplicationList(senderID) {
