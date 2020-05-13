@@ -1457,7 +1457,7 @@ function BookshopMenu(senderID) {
                   },
                   {
                     "type": "postback",
-                    "title": "Selling Books List",
+                    "title": "Your Books List",
                     "payload": "booklist"
                   },
                 ]
@@ -1484,13 +1484,13 @@ function Get_BookList(senderID) {
         "buttons": [
           {
             "type": "postback",
-            "title": "Your Book Selling Information",
+            "title": "Your Book Selling Info",
             "payload": `book_detail#${doc.id}#${doc.data().author}`
           },
           {
             "type": "web_url",
             "url": "https://kusharphat.herokuapp.com/edit_book/" + senderID + "/" + doc.id + "/" + doc.data().author,
-            "title": "Edit Selling Information",
+            "title": "Edit Selling Info",
             "webview_height_ratio": "full"
           },
 
