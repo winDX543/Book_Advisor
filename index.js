@@ -202,6 +202,7 @@ app.post('/webhook', (req, res) => {
                         })
 
                       }
+                    
                       if (userQuickreply == 'searchbook') {
                         console.log("Searchhh", userInput);
                         SearchBook(senderID);
@@ -501,6 +502,7 @@ app.post('/webhook', (req, res) => {
                       QuickReplyReviewerMenu(senderID);
                     })
                   }
+               
                   if (userQuickreply == 'searchbook') {
                     console.log("Searchhh", userInput);
                     SearchBook(senderID);
@@ -800,8 +802,9 @@ app.post('/webhook', (req, res) => {
               }
 
               if (userInput == 'booklist') {
-                Get_BookList(senderID)
-          
+              	
+              		Get_BookList(senderID);
+              
               }
               if (userMessage == 'Login') {
                 QuickReplyMenu(senderID);
@@ -1312,7 +1315,7 @@ function QuickReplyMenu(senderID) {
       },
 
       "message": {
-        "text": "Menu of Book Seller",
+        "text": "Tap Menu",
         "quick_replies": [
           {
             "content_type": "text",
@@ -1335,7 +1338,7 @@ function QuickReplyUserMenu(senderID) {
       },
 
       "message": {
-        "text": "Please Choose User Menu",
+        "text": "Reader Menu",
         "quick_replies": [
           {
             "content_type": "text",
@@ -1396,7 +1399,7 @@ function QuickReplyNewUser(senderID) {
       },
 
       "message": {
-        "text": "Please choose Reader or Book Seller",
+        "text": "Book Reader or Book Seller?",
         "quick_replies": [
           {
             "content_type": "text",
@@ -1442,18 +1445,18 @@ function BookshopMenu(senderID) {
             "template_type": "generic",
             "elements": [
               {
-                "title": "Menu",
+                "title": "Book Seller Menu",
                 "subtitle": "Choose One Menu",
                 "buttons": [
                   {
                     "type": "web_url",
                     "url": "https://kusharphat.herokuapp.com/register_books/" + senderID,
-                    "title": "Register Books",
+                    "title": "Selling Books",
                     "webview_height_ratio": "full"
                   },
                   {
                     "type": "postback",
-                    "title": "Books List",
+                    "title": "Selling Books List",
                     "payload": "booklist"
                   },
                 ]
@@ -1480,13 +1483,13 @@ function Get_BookList(senderID) {
         "buttons": [
           {
             "type": "postback",
-            "title": "Book Detail",
+            "title": "Your Book Selling Information",
             "payload": `book_detail#${doc.id}#${doc.data().author}`
           },
           {
             "type": "web_url",
             "url": "https://kusharphat.herokuapp.com/edit_book/" + senderID + "/" + doc.id + "/" + doc.data().author,
-            "title": "Edit Books",
+            "title": "Edit Selling Information",
             "webview_height_ratio": "full"
           },
 
