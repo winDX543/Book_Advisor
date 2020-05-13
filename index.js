@@ -1476,7 +1476,7 @@ function Get_BookList(senderID) {
   return db.collection('book').where('owner', 'array-contains', senderID).get().then(async (booklist) => {
     booklist.forEach(doc => {
       let data = {
-        "title": "BookName : " + doc.id,
+        "title": "Book Name : " + doc.id,
         "subtitle": "Author : " + doc.data().author,
         "image_url": doc.data().image,
         "buttons": [
@@ -1735,7 +1735,7 @@ function SearchByTypingR(senderID, userMessage) {
         bookshop.forEach(doc => {
 
           let data = {
-            "title": "BookName : " + userMessage,
+            "title": "Book Name : " + userMessage,
             "subtitle": "Author : " + author,
             "image_url": imageUrl,
             "buttons": [
@@ -1746,12 +1746,12 @@ function SearchByTypingR(senderID, userMessage) {
               },
               {
                 "type": "postback",
-                "title": "Book Review List",
+                "title": "Book Review Video",
                 "payload": `bookreviewlist#${userMessage}`
               },
               {
                 "type": "postback",
-                "title": "Upload Video",
+                "title": "Upload Review",
                 "payload": `upvideo#${userMessage}`
               }
 
@@ -1829,7 +1829,7 @@ function SearchByAuthor(senderID, userMessage) {
     bokau.forEach(doc => {
       if (doc.data().author == userMessage) {
         let data = {
-          "title": "BookName : " + doc.id,
+          "title": "Book Name : " + doc.id,
           "subtitle": "Author : " + userMessage,
           "image_url": doc.data().image,
           "buttons": [
@@ -1909,13 +1909,13 @@ function SearchByAuthorR(senderID, userMessage)
                   bokau.forEach(doc => {
                     if (doc.data().author == userMessage) {
                       let data = {
-                        "title": "BookName : " + doc.id,
+                        "title": "Book Name : " + doc.id,
                         "subtitle": "Author : " + userMessage,
                         "image_url": doc.data().image,
                         "buttons": [
                           {
                             "type": "postback",
-                            "title": "Book Detail",
+                            "title": "Book Info",
                             "payload": `authorbkdetail#${doc.id}#${doc.data().image}`
                           },
                           {
