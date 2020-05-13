@@ -351,11 +351,11 @@ app.post('/webhook', (req, res) => {
 
                       }
                       if (userInput == 'instruction') {
-                        MessageDetail(senderID,"Please Upload the Facebook Video Link").then(() => {
-                        	 MessageDetail(senderID,"The email will be sent when you are accepted as Reviewer").then(()=>{
-                        	 	 MessageDetail(senderID,"Please Follow the instruction to become a 'Book Reviewer'").then(()=>{
-                        	 	 	 MessageDetail(senderID,"Sent the payment wallet account name to winerer@gmail.com ~!").then(()=>{
-                        	 	 	 		 MessageDetail(senderID,"Enjoy ~").then(()=>{
+                        textMessage(senderID,"Please Upload the Facebook Video Link").then(() => {
+                        	 textMessage(senderID,"The email will be sent when you are accepted as Reviewer").then(()=>{
+                        	 	 textMessage(senderID,"Please Follow the instruction to become a 'Book Reviewer'").then(()=>{
+                        	 	 	 textMessage(senderID,"Sent the payment wallet account name to winerer@gmail.com ~!").then(()=>{
+                        	 	 	 		 textMessage(senderID,"Enjoy ~").then(()=>{
                         	 	 	 		 QuickReplyUserMenu(senderID)	
                         	 	 	 		 })
                         	 	 	 })
