@@ -57,18 +57,19 @@ const db = admin.firestore();
 
 //get_started and greeting 
 
-	// requestify.post('https://graph.facebook.com/v2.6/me/messenger_profile?access_token=' + PAGE_ACCESS_TOKEN,
-	//   {
-	//     "get_started": { "payload": "Hi" },
+	requestify.post('https://graph.facebook.com/v2.6/me/messenger_profile?access_token=' + PAGE_ACCESS_TOKEN,
+	  {
+	    "get_started": { "payload": "Hi" },
 	     
-	//     "greeting": [
-	//       {
-	//         "locale": "default",
-	//         "text": "Hello {{user_first_name}}! \nWe provide service!!"
-	//       }
-	//     ]
-	//   }
-	// )
+	    "greeting": [
+	      {
+	        "locale": "default",
+	        "text": "Hello {{user_first_name}}! \nWe provide service!!"
+	      }
+	    ]
+	  }
+	)
+
 
 // Sets server port and logs message on success
 
@@ -1280,7 +1281,9 @@ app.post('/register_user', (req, res) => {
     isreviewer: isreviewer,
     userid: sender
   }).then(success => {
-    QuickReplyUserMenu(sender);
+   textMessage(sender,"Register Successful").then(()=>{
+   	  QuickReplyUserMenu(sender)
+   })
 
     // window.location.assign('https://www.messenger.com/closeWindow/?image_url=https://secure.i.telegraph.co.uk/multimedia/archive/03058/thankyou-interest_3058089c.jpg&display_text=Thanks');
   }).catch(error => {
@@ -2439,27 +2442,27 @@ async function RetrieveVideo(senderID, dataarray) {
 //       }
 //   });
 // } 
-function removePersistentMenu(res){
-	var messageData = {
-		"fields":[
-			"persistent_menu",
-			"get_started"
-		]
-	};
+// function removePersistentMenu(res){
+// 	var messageData = {
+// 		"fields":[
+// 			"persistent_menu",
+// 			"get_started"
+// 		]
+// 	};
 
-	request({
-		url:'https:graph.facebook.com/v.2.6/me/messenger_profile?access_token='+PAGE_ACCESS_TOKEN,
-		method: 'DELETE',
-		headers: {'Content-Type': 'application/json'},
-		form: messageData
-	},
-		function(error,response,body){
-			if(!error && response.statusCode == 200){
-				res.send(body);
-			} else {
-				res.send(body);
-			}
+// 	request({
+// 		url:'https:graph.facebook.com/v.2.6/me/messenger_profile?access_token='+PAGE_ACCESS_TOKEN,
+// 		method: 'DELETE',
+// 		headers: {'Content-Type': 'application/json'},
+// 		form: messageData
+// 	},
+// 		function(error,response,body){
+// 			if(!error && response.statusCode == 200){
+// 				res.send(body);
+// 			} else {
+// 				res.send(body);
+// 			}
 		
-	});
-}
+// 	});
+// }
 
