@@ -898,18 +898,17 @@ app.post('/webhook', (req, res) => {
                                         ooooo.forEach(doc=>{
                                           if(doc.data().isreviewer == 'no')
                                           {
-                                            condition = 'no'
+                                            condition = 'no';
+                                            QuickReplyAdminMenu(senderID);
                                           }
                                           else if (doc.data().isreviewer == 'yes')
                                           {
                                             condition = 'no'
+                                            QuickReplyAdminMenu(senderID);
                                           }
                                         })
 
-                                    if(condition == 'no')
-                                    {
-                                      QuickReplyAdminMenu(senderID);
-                                    }
+                                    
                            })
            
           }
@@ -927,18 +926,17 @@ app.post('/webhook', (req, res) => {
                                         kkk.forEach(doc=>{
                                           if(doc.data().isreviewer == 'no')
                                           {
-                                            correct = 'no'
+                                            correct = 'no';
+                                            QuickReplyAdminMenu(senderID);
                                           }
                                           else if (doc.data().isreviewer == 'yes')
                                           {
-                                            correct = 'no'
+                                            correct = 'no';
+                                            QuickReplyAdminMenu(senderID);
                                           }
                                         })
 
-                                    if(correct == 'no')
-                                    {
-                                      QuickReplyAdminMenu(senderID);
-                                    }
+                                  
                            })
 
            
