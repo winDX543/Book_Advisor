@@ -2232,6 +2232,10 @@ async function ApplicationList(senderID) {
   let data=[];
   await db.collection('testingreviewer').where('isreviewer', '==', `${before}`).get().then(async (isreviewer) => {
     const promises=[];
+    if(isreviewer.empty){
+    	QuickReplyAdminMenu(senderID);
+    }
+    else{
     isreviewer.forEach(async (doc) => {
       promises.push(
        data = {
@@ -2268,9 +2272,11 @@ async function ApplicationList(senderID) {
       }).catch((err) => {
         console.log('Error getting documents', err);
       }))
-
+}
       await Promise.all(promises);
+
   })
+
 }
 
 // async function ApplicationList(senderID) {
