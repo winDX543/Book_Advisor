@@ -898,29 +898,14 @@ app.post('/webhook', (req, res) => {
             var docid = acceptreviwerarray[1];
             var userid = acceptreviwerarray[2];
             var input = acceptreviwerarray[0];
+            var conditionarray = [];
             var condition ='normal';
             console.log("DOcid", docid);
             console.log("Userid", userid)
             AcceptArray(senderID, docid, userid).then(ok => {
               ApplicationList(senderID)
                 })
-                  db.collection('testingreviewer').get().then(ooooo=>{
-                                        ooooo.forEach(doc=>{
-
-                                          if(doc.data().isreviewer == 'no'  && doc.data().userid == userid )
-                                          {
-                                            condition = 'no';
-                                             QuickReplyAdminMenu(senderID);
-                                          }
-                                          else if (doc.data().isreviewer == 'yes' && doc.data().userid == userid)
-                                          {
-                                            condition = 'no'
-                                             QuickReplyAdminMenu(senderID);
-                                          }
-                                        })
-
-                                    
-                           })
+               
            
           }
           if (userInput != undefined && userInput.includes('decline')) {
