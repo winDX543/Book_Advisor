@@ -913,7 +913,7 @@ app.post('/webhook', (req, res) => {
                                           else if (doc.data().isreviewer == 'yes')
                                           {
                                             condition = 'no'
-                                            // QuickReplyAdminMenu(senderID);
+                                             QuickReplyAdminMenu(senderID);
                                           }
                                         })
 
@@ -936,7 +936,7 @@ app.post('/webhook', (req, res) => {
                                           if(doc.data().isreviewer == 'no')
                                           {
                                             correct = 'no';
-                                            // QuickReplyAdminMenu(senderID);
+                                            QuickReplyAdminMenu(senderID);
                                           }
                                           else if (doc.data().isreviewer == 'yes')
                                           {
