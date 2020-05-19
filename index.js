@@ -905,7 +905,7 @@ app.post('/webhook', (req, res) => {
             AcceptArray(senderID, docid, userid).then(ok => {
               ApplicationList(senderID)
                 })
-               
+
            
           }
           if (userInput != undefined && userInput.includes('decline')) {
@@ -2333,13 +2333,13 @@ async function AcceptArray(senderID, docid, userid) {
     console.log("reviewer yes is ok");
   })
 
-  await db.collection('user').get().then(userdoc => {
+  await db.collection('user').get().then( async (userdoc) => {
     userdoc.forEach(doc => {
       if (doc.data().userid == userid) {
         userdocid = doc.id;
       }
     })
-    db.collection('user').doc(userdocid).set({
+   await db.collection('user').doc(userdocid).set({
       isreviewer: usercon
     }, { merge: true }).then(success => {
       console.log("reviwer user table");
