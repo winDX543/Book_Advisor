@@ -897,6 +897,7 @@ app.post('/webhook', (req, res) => {
             var acceptreviwerarray = userInput.split('#');
             var docid = acceptreviwerarray[1];
             var userid = acceptreviwerarray[2];
+            var input = acceptreviwerarray[0];
             var condition ='normal';
             console.log("DOcid", docid);
             console.log("Userid", userid)
@@ -905,12 +906,13 @@ app.post('/webhook', (req, res) => {
                 })
                   db.collection('testingreviewer').get().then(ooooo=>{
                                         ooooo.forEach(doc=>{
-                                          if(doc.data().isreviewer == 'no')
+
+                                          if(doc.data().isreviewer == 'no'  && doc.data().userid == userid )
                                           {
                                             condition = 'no';
-                                            // QuickReplyAdminMenu(senderID);
+                                             QuickReplyAdminMenu(senderID);
                                           }
-                                          else if (doc.data().isreviewer == 'yes')
+                                          else if (doc.data().isreviewer == 'yes' && doc.data().userid == userid)
                                           {
                                             condition = 'no'
                                              QuickReplyAdminMenu(senderID);
@@ -925,6 +927,7 @@ app.post('/webhook', (req, res) => {
             var declineviwerarray = userInput.split('#');
             var docid = declineviwerarray[1];
             var userid = declineviwerarray[2];
+            var iinput = declineviwerarray[0];
             console.log("DOcid", docid);
             console.log("Userid", userid)
             let correct='normal';
@@ -933,15 +936,15 @@ app.post('/webhook', (req, res) => {
                        });
                            db.collection('testingreviewer').get().then(kkk=>{
                                         kkk.forEach(doc=>{
-                                          if(doc.data().isreviewer == 'no')
+                                          if(doc.data().isreviewer == 'no' && doc.data().userid == userid)
                                           {
                                             correct = 'no';
                                             QuickReplyAdminMenu(senderID);
                                           }
-                                          else if (doc.data().isreviewer == 'yes')
+                                          else if (doc.data().isreviewer == 'yes' && doc.data().userid == userid)
                                           {
                                             correct = 'no';
-                                            // QuickReplyAdminMenu(senderID);
+                                            QuickReplyAdminMenu(senderID);
                                           }
                                         })
 
