@@ -936,17 +936,18 @@ app.post('/webhook', (req, res) => {
                                         kkk.forEach(doc=>{
                                           if(doc.data().isreviewer == 'no')
                                           {
-                                            correct = 'no';
-                                            QuickReplyAdminMenu(senderID);
+                                            correct = 'no'
                                           }
                                           else if (doc.data().isreviewer == 'yes')
                                           {
-                                            correct = 'no';
-                                            QuickReplyAdminMenu(senderID);
+                                            correct = 'no'
                                           }
                                         })
 
-                                  
+                                    if(correct == 'no')
+                                    {
+                                      QuickReplyAdminMenu(senderID);
+                                    }
                            })
 
            
