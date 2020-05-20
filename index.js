@@ -897,22 +897,35 @@ app.post('/webhook', (req, res) => {
             var acceptreviwerarray = userInput.split('#');
             var docid = acceptreviwerarray[1];
             var userid = acceptreviwerarray[2];
-            var input = acceptreviwerarray[0];
-            var conditionarray = [];
             var condition ='normal';
             console.log("DOcid", docid);
             console.log("Userid", userid)
             AcceptArray(senderID, docid, userid).then(ok => {
               ApplicationList(senderID)
                 })
+                  db.collection('testingreviewer').get().then(ooooo=>{
+                                        ooooo.forEach(doc=>{
+                                          if(doc.data().isreviewer == 'no')
+                                          {
+                                            condition = 'no'
+                                          }
+                                          else if (doc.data().isreviewer == 'yes')
+                                          {
+                                            condition = 'no'
+                                          }
+                                        })
 
+                                    if(condition == 'no')
+                                    {
+                                      QuickReplyAdminMenu(senderID);
+                                    }
+                           })
            
           }
           if (userInput != undefined && userInput.includes('decline')) {
             var declineviwerarray = userInput.split('#');
             var docid = declineviwerarray[1];
             var userid = declineviwerarray[2];
-            var iinput = declineviwerarray[0];
             console.log("DOcid", docid);
             console.log("Userid", userid)
             let correct='normal';
@@ -921,12 +934,12 @@ app.post('/webhook', (req, res) => {
                        });
                            db.collection('testingreviewer').get().then(kkk=>{
                                         kkk.forEach(doc=>{
-                                          if(doc.data().isreviewer == 'no' && doc.data().userid == userid)
+                                          if(doc.data().isreviewer == 'no')
                                           {
                                             correct = 'no';
                                             QuickReplyAdminMenu(senderID);
                                           }
-                                          else if (doc.data().isreviewer == 'yes' && doc.data().userid == userid)
+                                          else if (doc.data().isreviewer == 'yes')
                                           {
                                             correct = 'no';
                                             QuickReplyAdminMenu(senderID);
@@ -2333,13 +2346,13 @@ async function AcceptArray(senderID, docid, userid) {
     console.log("reviewer yes is ok");
   })
 
-  await db.collection('user').get().then( async (userdoc) => {
+  await db.collection('user').get().then(userdoc => {
     userdoc.forEach(doc => {
       if (doc.data().userid == userid) {
         userdocid = doc.id;
       }
     })
-   await db.collection('user').doc(userdocid).set({
+    db.collection('user').doc(userdocid).set({
       isreviewer: usercon
     }, { merge: true }).then(success => {
       console.log("reviwer user table");
