@@ -53,6 +53,8 @@ admin.initializeApp({
   databaseURL: "https://bookadvisor-c48dd.firebaseio.com"
 });
 
+const test = "hello";
+
 const db = admin.firestore();
 
 //get_started and greeting 
